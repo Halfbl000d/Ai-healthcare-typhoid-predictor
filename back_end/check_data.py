@@ -1,7 +1,8 @@
 import pandas as pd
+import os
 
-# Correct path to your dataset
-CSV_PATH = "C:/Users/DELL/projects/AI_health_care-main_2/AI_health_care-main/back_end/typhoid_data.csv"
+# ✅ FIXED - Use relative path instead of hardcoded path
+CSV_PATH = os.path.join(os.path.dirname(__file__), "typhoid_data.csv")
 
 # Load the dataset
 df = pd.read_csv(CSV_PATH)
