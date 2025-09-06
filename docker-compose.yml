@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Backend Flask API
+  backend:
+    build: 
+      context: ./back_end
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+    volumes:
+      - ./back_end/uploads:/app/uploads
+    networks:
+      - healthcare-network
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend  
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - healthcare-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  healthcare-network:
+    driver: bridge

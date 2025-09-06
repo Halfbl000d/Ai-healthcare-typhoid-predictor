@@ -1,0 +1,146 @@
+﻿# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+back_end/venv/
+back_end/.venv/
+
+# Node.js Dependencies (Frontend)
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Python
+__pycache__/
+back_end/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Machine Learning Models & Data (YOUR SPECIFIC FILES!)
+*.pkl
+*.joblib
+*.h5
+*.model
+models/
+back_end/models/
+data_dict.pkl
+nb_model.pkl
+rf_model.pkl
+svm_model.pkl
+svm_model copy.pkl
+Doctor_Specialist_Model.pkl
+nb_model_backup.pkl
+trained_models/
+model_weights/
+
+# Data Files (YOUR SPECIFIC FILES!)
+*.csv
+*.xlsx
+*.xls
+data/
+datasets/
+raw_data/
+typhoid_data.csv
+data_dict.pkl
+
+# Environment Variables & Config (YOUR SPECIFIC FILES!)
+.env
+.flaskenv
+config.py
+secrets.json
+.env.local
+.env.production
+back_end/.env
+frontend/.env
+
+# Database
+*.db
+*.sqlite3
+*.sql
+
+# Logs
+*.log
+logs/
+
+# Medical/Healthcare specific (YOUR SPECIFIC FILES!)
+uploads/
+back_end/uploads/
+patient_data/
+medical_images/
+reports/
+*.pdf
+*.docx
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Flask
+instance/
+.webassets-cache
+
+# Frontend Build
+frontend/dist/
+frontend/build/
+/build
+/dist
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+
+# Documentation builds
+_build/
+docs/_build/
+
+# Requirements backup
+requirements.txt.backup
+
+# Large Frontend Assets (commented out - uncomment if needed)
+# frontend/public/*.gif
+# *.gif
