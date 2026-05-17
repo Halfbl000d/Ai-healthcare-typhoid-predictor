@@ -1,205 +1,95 @@
 # AI Healthcare Typhoid Predictor 🏥
 
-An intelligent healthcare system that predicts typhoid fever using machine learning algorithms. Built with Flask (Python) backend and React frontend, featuring multiple ML models for accurate disease prediction.
+A full-stack web application that predicts typhoid fever based on patient symptoms using machine learning. Built with a Flask backend, React frontend, and three ML models for comparison.
 
-## 🌟 Features
+---
 
-- **Disease Prediction**: AI-powered typhoid prediction using symptoms
-- **Multiple ML Models**: Naive Bayes, Random Forest, and SVM algorithms
-- **User Authentication**: Secure login/registration system
-- **Interactive UI**: Modern React-based user interface
-- **Symptom Analysis**: Fuzzy matching for symptom input
-- **Docker Support**: One-command deployment
-- **Cross-Platform**: Works on Windows, Mac, and Linux
+## What It Does
 
-## 🖥️ Demo
+Users enter their symptoms into the app. The system runs the input through three trained machine learning models and returns a prediction with confidence. It also includes a doctor recommendation system and a basic AI chatbot for health queries.
 
-Visit the live demo: [Your-Live-Demo-Link] *(if deployed)*
+---
 
-## 📁 Project Structure
+## Features
 
-```
-AI-healthcare-typhoid-predictor/
-├── back_end/                 # Flask API & ML Models
-│   ├── app.py               # Main Flask application
-│   ├── predict_*.py         # ML model predictions
-│   ├── train_*.py           # Model training scripts
-│   ├── typhoid_data.csv     # Training dataset
-│   ├── requirements.txt     # Python dependencies
-│   └── Dockerfile           # Backend Docker config
-├── frontend/                 # React Application
-│   ├── src/
-│   │   ├── components/      # React components
-│   │   ├── pages/           # Application pages
-│   │   └── context/         # Authentication context
-│   ├── package.json         # Node.js dependencies
-│   └── Dockerfile           # Frontend Docker config
-├── docker-compose.yml       # Complete app orchestration
-└── README.md               # This file
-```
+- Symptom-based typhoid disease prediction
+- Three ML models: Random Forest, SVM, and Naive Bayes
+- Fuzzy symptom matching — handles typos and partial input
+- User authentication (register/login)
+- Doctor recommendation system
+- AI-powered chatbot for basic health queries
+- MongoDB for storing patient records
+- Docker support — one command to run everything
 
-## 🚀 Quick Start (Recommended)
+---
 
-### Prerequisites
-- [Docker](https://www.docker.com/get-started) installed on your system
-- [Git](https://git-scm.com/) for cloning the repository
+## Tech Stack
 
-### Installation & Setup
+**Frontend:** React 18, Vite, Tailwind CSS, Axios  
+**Backend:** Python, Flask, PyMongo, FuzzyWuzzy  
+**Machine Learning:** Scikit-learn (Random Forest, SVM, Naive Bayes)  
+**Database:** MongoDB  
+**Deployment:** Docker & Docker Compose  
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Halfbl000d/Ai-healthcare-typhoid-predictor.git
-   cd Ai-healthcare-typhoid-predictor
-   ```
+---
 
-2. **Start the application**
-   ```bash
-   docker-compose up --build
-   ```
+## Machine Learning Models
 
-3. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-   - MongoDB: localhost:27017
+Three classifiers were trained and compared on a cleaned, balanced symptom dataset (~3,000 records, approximately 45/55 class split):
 
-That's it! 🎉 The application will automatically set up:
-- MongoDB database
-- Flask backend with ML models
-- React frontend interface
+| Model | Performance |
+|-------|------------|
+| Random Forest | ~90% accuracy (best performer) |
+| SVM | ~85-90% accuracy |
+| Naive Bayes | ~70% accuracy (lowest, expected for this data type) |
 
-## 🛠️ Manual Setup (Alternative)
+Models were evaluated on a 30% held-out test set using stratified splitting. Random Forest performed best overall. Naive Bayes showed lower performance, which is typical for symptom-based classification tasks.
 
-If you prefer to run without Docker:
+---
 
-### Backend Setup
+## Dataset
 
-1. **Navigate to backend directory**
-   ```bash
-   cd back_end
-   ```
+Training data was sourced from a publicly available Kaggle dataset on typhoid cases. The dataset was cleaned manually before use — personal identifiers (names, IDs, location details) were removed and only symptom and diagnosis fields were retained. Approximately 3,000 records were used after cleaning, with class distribution balanced to around 45/55 (positive/negative).
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # Mac/Linux
-   source venv/bin/activate
-   ```
+---
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Quick Start (Docker)
 
-4. **Install & Start MongoDB**
-   - Download from [MongoDB Official Site](https://www.mongodb.com/try/download/community)
-   - Start MongoDB service
+**Prerequisites:** Docker and Git installed
 
-5. **Create environment file**
-   ```bash
-   # Create .env file in back_end directory
-   MONGODB_URI=mongodb://localhost:27017/ai_healthcare
-   SECRET_KEY=your_super_secret_key_here
-   FUZZY_THRESHOLD=80
-   FLASK_ENV=development
-   PORT=5000
-   FRONTEND_URL=http://localhost:3000
-   ```
-
-6. **Run the backend**
-   ```bash
-   python app.py
-   ```
-
-### Frontend Setup
-
-1. **Navigate to frontend directory**
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Create environment file**
-   ```bash
-   # Create .env file in frontend directory
-   VITE_API_URL=http://127.0.0.1:5000
-   ```
-
-4. **Start the frontend**
-   ```bash
-   npm run dev
-   ```
-
-## 🧠 Machine Learning Models
-
-The system uses three different ML algorithms:
-
-- **Naive Bayes**: Probabilistic classifier based on Bayes' theorem
-- **Random Forest**: Ensemble method using multiple decision trees
-- **Support Vector Machine**: Finds optimal decision boundary
-
-## 🌐 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/test` | API health check |
-| POST | `/typhoidpredict` | Predict typhoid from symptoms |
-| POST | `/auth/register` | User registration |
-| POST | `/auth/login` | User login |
-| GET | `/symptoms` | Get available symptoms list |
-
-## 📊 Usage
-
-1. **Register/Login**: Create an account or login
-2. **Enter Symptoms**: Input patient symptoms
-3. **Get Prediction**: AI analyzes and provides prediction
-4. **View Results**: See prediction confidence and recommendations
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Docker not starting:**
 ```bash
-# Make sure Docker is running
-docker --version
-docker-compose --version
+# Clone the repo
+git clone https://github.com/Halfbl000d/Ai-healthcare-typhoid-predictor.git
+cd Ai-healthcare-typhoid-predictor
+
+# Start everything
+docker-compose up --build
 ```
 
-**Port already in use:**
+Then open:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000
+
+---
+
+## Manual Setup
+
+### Backend
+
 ```bash
-# Kill processes using ports 3000, 5000, or 27017
+cd back_end
+python -m venv venv
+
 # Windows
-netstat -ano | findstr :3000
-taskkill /PID <PID_NUMBER> /F
-
+venv\Scripts\activate
 # Mac/Linux
-lsof -ti:3000 | xargs kill -9
+source venv/bin/activate
+
+pip install -r requirements.txt
 ```
 
-**MongoDB connection error:**
-- Ensure MongoDB is running (for manual setup)
-- Check the MONGODB_URI in your .env file
-
-## 📝 Environment Variables
-
-### Backend (.env)
-```env
+Create a `.env` file in `back_end/`:
+```
 MONGODB_URI=mongodb://localhost:27017/ai_healthcare
 SECRET_KEY=your-secret-key-here
 FUZZY_THRESHOLD=80
@@ -208,52 +98,74 @@ PORT=5000
 FRONTEND_URL=http://localhost:3000
 ```
 
-### Frontend (.env)
-```env
+```bash
+python app.py
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env` file in `frontend/`:
+```
 VITE_API_URL=http://127.0.0.1:5000
 ```
 
-## 🔧 Technologies Used
+```bash
+npm run dev
+```
 
-**Backend:**
-- Python 3.x
-- Flask (Web Framework)
-- PyMongo (MongoDB)
-- Scikit-learn (Machine Learning)
-- Pandas (Data Processing)
-- FuzzyWuzzy (String Matching)
-
-**Frontend:**
-- React 18
-- Vite (Build Tool)
-- Tailwind CSS
-- React Router
-- Axios (HTTP Client)
-
-**Database:**
-- MongoDB
-
-**Deployment:**
-- Docker & Docker Compose
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Halfbl000d**
-- GitHub: [@Halfbl000d](https://github.com/Halfbl000d)
-- Project Link: [https://github.com/Halfbl000d/Ai-healthcare-typhoid-predictor](https://github.com/Halfbl000d/Ai-healthcare-typhoid-predictor)
-
-## ⭐ Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📸 Screenshots
-
-*Add screenshots of your application here*
+Open http://localhost:3000
 
 ---
 
-**Made with ❤️ for better healthcare through AI**
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /test | Health check |
+| POST | /typhoidpredict | Predict typhoid from symptoms |
+| POST | /auth/register | Register new user |
+| POST | /auth/login | Login |
+| GET | /symptoms | Get available symptoms list |
+
+---
+
+## Project Structure
+
+```
+Ai-healthcare-typhoid-predictor/
+├── back_end/
+│   ├── app.py
+│   ├── predict_nb.py
+│   ├── predict_rf.py
+│   ├── predict_svm.py
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── context/
+│   ├── package.json
+│   └── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## Author
+
+**Karun Subedi**  
+GitHub: [@Halfbl000d](https://github.com/Halfbl000d)  
+Email: karunsubedi41@gmail.com
+
+---
+
+## License
+
+MIT License
